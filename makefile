@@ -9,7 +9,7 @@ CC = gcc                        # compiler to use
 LINKERFLAG = -lm
 
 SRCS := $(wildcard *.c)
-BINS := $(SRCS:%.c=%)
+BINS := ~/bin/$(SRCS:%.c=%)
 
 all: ${BINS}
 
