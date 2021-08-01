@@ -15,7 +15,7 @@ all: ${BINS}
 
 %: %.o
 	@echo "Checking.."
-	${CC} ${LINKERFLAG} $< -o $@
+	${CC} ${LINKERFLAG} $< -o ~/.local/bin/$@
 
 %.o: %.c
 	@echo "Creating object.."
