@@ -9,7 +9,7 @@ CC = gcc                        # compiler to use
 LINKERFLAG = -lm
 
 SRCS := $(wildcard *.c)
-BINS := ~/bin/$(SRCS:%.c=%)
+BINS := ~/.local/bin/$(SRCS:%.c=%)
 
 all: ${BINS}
 
@@ -23,4 +23,4 @@ all: ${BINS}
 
 clean:
 	@echo "Cleaning up..."
-	rm -rvf *.o ${BINS}
+	rm -rvf *.o ~/.local/bin/${BINS}
