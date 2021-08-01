@@ -16,7 +16,7 @@ int main ( int argc, char *argv[]) {
 	int c;
 	int shutTheFuckUp = '0';
 	opterr = 0;
-	while ((c = getopt (argc, argv, "fqs:v")) != -1)
+	while ((c = getopt (argc, argv, "fqs:vw")) != -1)
 		switch (c)
 			{
 				case 'f':
@@ -30,7 +30,10 @@ int main ( int argc, char *argv[]) {
 					opt_s = optarg;
 					break;
 				case 'v':
-					printf("zombie v0.01\n");
+					printf("zombie v0.013\n");
+					break;
+				case 'w':
+					system("google-chrome fuck.you");
 					break;
 				case '?':
 					if (optopt == 's')
