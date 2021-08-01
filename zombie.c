@@ -1,4 +1,5 @@
 /*
+FOO
 Run to compile:
 gcc zombie.c -o zombie
 */
