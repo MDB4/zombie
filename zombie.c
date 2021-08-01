@@ -11,15 +11,14 @@ gcc zombie.c -o zombie
 
 int main ( int argc, char *argv[]) {
 	int execve_pid;
-	char *myenv;
+	char * const* eParm = "-n 0.333 sudo ps axo stat,ppid,pid,comm | grep -w defunct";
+	char * const* myenv = "foo";
 	
 	if (argc<3) {
 		if (argv[2] = "-w") {
-			argv[2] = "-n 0.333 sudo ps axo stat,ppid,pid,comm | grep -w defunct"
-			argv[3] = "foo"
 			execve_pid = fork ();
 			if (execve_pid == 0) {
-				execve ("watch", argv[2], argv[3]);
+				execve ("watch", eParm, myenv);
 			}
 		}
 	}
