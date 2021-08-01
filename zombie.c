@@ -15,19 +15,23 @@ int main ( int argc, char *argv[]) {
 /**Options***************************************************************************************/			
 	char *opt_s = "9";
 	int c;
+	int shutTheFuckUp = '0';
 	opterr = 0;
-	while ((c = getopt (argc, argv, "fs:v")) != -1)
+	while ((c = getopt (argc, argv, "fqs:v")) != -1)
 		switch (c)
 			{
 				case 'f':
-				printf("Fuck you. 🖕️\n");
-				break;
+					printf("Fuck you. 🖕️\n");
+					break;
+				case 'q':
+					shutTheFuckUp = '1';
+					break;
 				case 's':
-				opt_s = optarg;
-				break;
+					opt_s = optarg;
+					break;
 				case 'v':
-				printf("zombie v0.01\n");
-				break;
+					printf("zombie v0.008\n");
+					break;
 				case '?':
 					if (optopt == 's')
 						fprintf (stderr, "Option -%c requires an argument.\n", optopt);
@@ -50,13 +54,19 @@ int main ( int argc, char *argv[]) {
 	pid_t child_pid;
 	child_pid = fork ();
 	if (child_pid > 0) {
-		printf("Child: %d sleeping %ss. . .\n", child_pid, sleepDur_S);
+		if (shutTheFuckUp != '1') {
+			printf("Child: %d sleeping %ss. . .\n", child_pid, sleepDur_S);
+		}
 		sleep (sleepDur);
 	} else {
-		printf("Parent: %d exiting. . .\n", selfPid);
+		if (shutTheFuckUp != '1') {
+			printf("Parent: %d exiting. . .\n", selfPid);
+		}
 		exit (0);
 	}
 	
-	printf("Child: %d returning. . .\n", child_pid);
+	if (shutTheFuckUp != '1') {
+		printf("Child: %d returning. . .\n", child_pid);
+	}
 	return 0;
 }
