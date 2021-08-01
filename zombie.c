@@ -9,20 +9,7 @@ gcc zombie.c -o zombie
 #include <string.h>
 #include <sys/wait.h>
 
-int main ( int argc, char *argv[]) {
-	int execve_pid;
-	char * const* eParm = "-n 0.333 sudo ps axo stat,ppid,pid,comm | grep -w defunct";
-	char * const* myenv = "foo";
-	
-	if (argc<3) {
-		if (argv[2] = "-w") {
-			execve_pid = fork ();
-			if (execve_pid == 0) {
-				execve ("watch", eParm, myenv);
-			}
-		}
-	}
-	
+int main ( int argc, char *argv[]) {	
 	if (argc<2) {
 		argv[1] = "9";
 	}
