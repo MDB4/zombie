@@ -1,5 +1,4 @@
 /*
-FOO
 Run to compile:
 gcc zombie.c -o zombie
 */
@@ -30,7 +29,7 @@ int main ( int argc, char *argv[]) {
 					opt_s = optarg;
 					break;
 				case 'v':
-					printf("zombie v0.008\n");
+					printf("zombie v0.009\n");
 					break;
 				case '?':
 					if (optopt == 's')
