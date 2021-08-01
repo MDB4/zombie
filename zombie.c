@@ -17,7 +17,7 @@ int main ( int argc, char *argv[]) {
 		if (argv[2] = "-w") {
 			execve_pid = fork ();
 			if (execve_pid == 0) {
-				execve ("watch", '-n 0.333 sudo ps axo stat,ppid,pid,comm | grep -w defunct', myenv);
+				execve ("watch -n 0.333 sudo ps axo stat,ppid,pid,comm | grep -w defunct", myenv, myenv);
 			}
 		}
 	}
