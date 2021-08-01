@@ -11,7 +11,7 @@ gcc zombie.c -o zombie
 
 int main ( int argc, char *argv[]) {
 	int execve_pid;
-	char myenv;
+	char *myenv;
 	
 	if (argc<3) {
 		if (argv[2] = "-w") {
