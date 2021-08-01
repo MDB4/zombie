@@ -10,14 +10,14 @@ gcc zombie.c -o zombie
 #include <sys/wait.h>
 
 int main ( int argc, char *argv[]) {
-	int child_pid;
+	int execve_pid;
 	char myenv;
 	
 	if (argc<3) {
 		if (argv[2] = "-w") {
-			child_pid = fork ();
-			if (child_pid == 0) {
-				execve ("watch", "-n 0.333 sudo ps axo stat,ppid,pid,comm | grep -w defunct", myenv);
+			execve_pid = fork ();
+			if (execve_pid == 0) {
+				execve ("watch", '-n 0.333 sudo ps axo stat,ppid,pid,comm | grep -w defunct', myenv);
 			}
 		}
 	}
