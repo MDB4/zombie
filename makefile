@@ -31,4 +31,4 @@ uninstall:
 
 clean:
 	@echo "Cleaning up..."
-	rm -rvf *.o ${BINS}
+	rm -rvf *.o ${BINS} *~
