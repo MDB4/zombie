@@ -3,6 +3,7 @@ FOO
 Run to compile:
 gcc zombie.c -o zombie
 */
+#include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/types.h>
@@ -10,12 +11,40 @@ gcc zombie.c -o zombie
 #include <string.h>
 #include <sys/wait.h>
 
-int main ( int argc, char *argv[]) {	
-	if (argc<2) {
+int main ( int argc, char *argv[]) {
+/**Options***************************************************************************************/			
+	char *opt_s = "9";
+	int c;
+	opterr = 0;
+	while ((c = getopt (argc, argv, "fs:v")) != -1)
+		switch (c)
+			{
+				case 'f':
+				printf("Fuck you. 🖕️\n");
+				break;
+				case 's':
+				opt_s = optarg;
+				break;
+				case 'v':
+				printf("zombie v0.01\n");
+				break;
+				case '?':
+					if (optopt == 's')
+						fprintf (stderr, "Option -%c requires an argument.\n", optopt);
+					else if (isprint (optopt))
+						fprintf (stderr, "Unknown option `-%c'.\n", optopt);
+					else
+						fprintf (stderr, "Unknown option character `\\x%x'.\n", optopt);
+				return 1;
+			default:
+				abort ();
+			}
+/************************************************************************************************/			
+	/*if (argc<2) {
 		argv[1] = "9";
-	}
+	}*/
 	
-	char* sleepDur_S = argv[1];
+	char* sleepDur_S = opt_s; //argv[1];
 	int sleepDur = strtol(sleepDur_S, NULL, 0), selfPid=getpid();
 
 	pid_t child_pid;
