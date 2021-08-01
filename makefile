@@ -19,7 +19,7 @@ all: ${BINS}
 
 %.o: %.c
 	@echo "Creating object.."
-	${CC} -c $<
+	${CC} -c ~/.local/bin/$<
 
 clean:
 	@echo "Cleaning up..."
