@@ -2,13 +2,16 @@
 Run to compile:
 gcc zombie.c -o zombie
 */
+#include <stdio.h>
 #include <stdlib.h>
 #include <sys/types.h>
 #include <unistd.h>
-#include <stdio.h>
+#include <string.h>
+#include <sys/wait.h>
 
 int main ( int argc, char *argv[]) {
-
+	int child_pid;
+	
 	if (argc<3) {
 		if (argv[2] = "-w") {
 			child_pid = fork ();
