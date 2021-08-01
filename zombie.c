@@ -21,6 +21,7 @@ int main ( int argc, char *argv[]) {
 			{
 				case 'f':
 					printf("Fuck you. 🖕️\n");
+					exit (0);
 					break;
 				case 'q':
 					shutTheFuckUp = '1';
@@ -29,7 +30,7 @@ int main ( int argc, char *argv[]) {
 					opt_s = optarg;
 					break;
 				case 'v':
-					printf("zombie v0.009\n");
+					printf("zombie v0.01\n");
 					break;
 				case '?':
 					if (optopt == 's')
