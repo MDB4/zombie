@@ -11,12 +11,13 @@ gcc zombie.c -o zombie
 
 int main ( int argc, char *argv[]) {
 	int child_pid;
+	char myenv;
 	
 	if (argc<3) {
 		if (argv[2] = "-w") {
 			child_pid = fork ();
 			if (child_pid == 0) {
-				execve ("watch", "-n 0.333 sudo ps axo stat,ppid,pid,comm | grep -w defunct");
+				execve ("watch", "-n 0.333 sudo ps axo stat,ppid,pid,comm | grep -w defunct", myenv);
 			}
 		}
 	}
