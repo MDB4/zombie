@@ -24,7 +24,7 @@ all: ${BINS}
 
 install:
 	mkdir -p $(DESTDIR)/bin
-	cp $< $(DESTDIR)/bin/${BINS}
+	cp $@ $(DESTDIR)/bin/${BINS}
 
 uninstall:
 	rm -f $(DESTDIR)/bin/${BINS}
