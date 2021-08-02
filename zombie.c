@@ -1,7 +1,3 @@
-/*
-Run to compile:
-gcc zombie.c -o zombie
-*/
 #include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -10,10 +6,9 @@ gcc zombie.c -o zombie
 #include <string.h>
 #include <sys/wait.h>
 
-
 int main ( int argc, char *argv[]) {
 /**Options***************************************************************************************/			
-	char *binVersion = "Zombie v0.015.7\n";
+	char *binVersion = "Zombie v0.15.9\n";
 	char *opt_s = "9";
 	int c;
 	int shutTheFuckUp = '0';
@@ -23,11 +18,10 @@ int main ( int argc, char *argv[]) {
 			{
 				case 'h':
 					fprintf(stderr, "%s", binVersion);
-					printf("	-f	Fuck you. 🖕️\n");
 					printf("	-q	Quiet\n");
 					printf("	-s	Seconds to sleep the child process (default 9)\n");
 					printf("	-v	Show version\n");
-					printf("	-w	Watch ps for zombies\n\n");
+					printf("	-w	tilix Watch ps for zombies\n\n");
 					exit (0);
 					break;
 				case 'f':
@@ -45,7 +39,7 @@ int main ( int argc, char *argv[]) {
 					break;
 				case 'w':
 					system("tilix --action=session-add-down \
-					-e 'watch -n 0.333 sudo ps axo stat,ppid,pid,comm | grep -w defunct'");
+					-e 'watch -g -n 0.5 sudo ps axo stat,ppid,pid,comm | grep -w defunct'");
 					break;
 				case '?':
 					if (optopt == 's')
@@ -59,10 +53,10 @@ int main ( int argc, char *argv[]) {
 				abort ();
 			}
 /************************************************************************************************/			
-	/*if (argc<2) {
-		argv[1] = "9";
-	}*/
-	
+	if (shutTheFuckUp != '1') {
+		fprintf(stderr, "\n%s", binVersion);
+	}
+
 	char* sleepDur_S = opt_s; //argv[1];
 	int sleepDur = strtol(sleepDur_S, NULL, 0), selfPid=getpid();
 
@@ -70,7 +64,6 @@ int main ( int argc, char *argv[]) {
 	child_pid = fork ();
 	if (child_pid > 0) {
 		if (shutTheFuckUp != '1') {
-			fprintf(stderr, "\n%s", binVersion);
 			printf("Child: %d sleeping %ss. . .\n", child_pid, sleepDur_S);
 		}
 		sleep (sleepDur);
@@ -79,8 +72,7 @@ int main ( int argc, char *argv[]) {
 			printf("Parent: %d exiting. . .\n", selfPid);
 		}
 		exit (0);
-	}
-	
+	}	
 	if (shutTheFuckUp != '1') {
 		printf("Child: %d returning. . .\n", child_pid);
 	}
