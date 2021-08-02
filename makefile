@@ -24,8 +24,10 @@ all: ${BINS}
 
 install:
 	mkdir -p $(DESTDIR)/bin
-	cp ${BINS} $(DESTDIR)/bin/
-
+	mv ${BINS} $(DESTDIR)/bin/
+	@echo "Cleaning up..."
+	rm -rvf *.o ${BINS} *~
+	
 uninstall:
 	rm -f $(DESTDIR)/bin/${BINS}
 

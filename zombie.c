@@ -10,15 +10,26 @@ gcc zombie.c -o zombie
 #include <string.h>
 #include <sys/wait.h>
 
+
 int main ( int argc, char *argv[]) {
 /**Options***************************************************************************************/			
+	char *binVersion = "Zombie v0.015.7\n";
 	char *opt_s = "9";
 	int c;
 	int shutTheFuckUp = '0';
 	opterr = 0;
-	while ((c = getopt (argc, argv, "fqs:vw")) != -1)
+	while ((c = getopt (argc, argv, "hfqs:vw")) != -1)
 		switch (c)
 			{
+				case 'h':
+					fprintf(stderr, "%s", binVersion);
+					printf("	-f	Fuck you. 🖕️\n");
+					printf("	-q	Quiet\n");
+					printf("	-s	Seconds to sleep the child process (default 9)\n");
+					printf("	-v	Show version\n");
+					printf("	-w	Watch ps for zombies\n\n");
+					exit (0);
+					break;
 				case 'f':
 					printf("Fuck you. 🖕️\n");
 					exit (0);
@@ -30,10 +41,11 @@ int main ( int argc, char *argv[]) {
 					opt_s = optarg;
 					break;
 				case 'v':
-					printf("zombie v0.013\n");
+					fprintf(stderr, "%s", binVersion);
 					break;
 				case 'w':
-					system("google-chrome fuck.you");
+					system("tilix --action=session-add-down \
+					-e 'watch -n 0.333 sudo ps axo stat,ppid,pid,comm | grep -w defunct'");
 					break;
 				case '?':
 					if (optopt == 's')
@@ -58,6 +70,7 @@ int main ( int argc, char *argv[]) {
 	child_pid = fork ();
 	if (child_pid > 0) {
 		if (shutTheFuckUp != '1') {
+			fprintf(stderr, "\n%s", binVersion);
 			printf("Child: %d sleeping %ss. . .\n", child_pid, sleepDur_S);
 		}
 		sleep (sleepDur);
